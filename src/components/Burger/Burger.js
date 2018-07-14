@@ -8,7 +8,7 @@ class Burger extends React.Component{
     
     render(){
 
-        const transformedIngredients= Object.keys(this.props.ingredients)
+        let transformedIngredients= Object.keys(this.props.ingredients)
             .map((ingredientKey) => {
             return [...Array(this.props.ingredients[ingredientKey])]
             .map((_,index)=>{
@@ -16,7 +16,15 @@ class Burger extends React.Component{
                       type={ingredientKey} /> 
             })
             })
+            .reduce((sum,el)=>{
+                return sum.concat(el)
+            },[])
+
         console.log(transformedIngredients);
+        
+        if(transformedIngredients.length === 0){
+            transformedIngredients=<p>Please Start Adding Ingredients </p>
+        }
         
         return (
            <div className={calsses.Burger}>
