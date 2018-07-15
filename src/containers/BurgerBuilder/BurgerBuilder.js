@@ -4,7 +4,8 @@ import Aux from '../../hoc/Hux'
 
 import Burger from '../../components/Burger/Burger'
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
-
+import Modal from '../../components/UI/Modal/Modal'
+import Ordersummary from '../../components/Burger/OrderSummary/OrderSummary'
 
 const INGREDIENT_PRICES = {
     salad: 0.5,
@@ -23,7 +24,8 @@ class BurgerBuilder extends React.Component{
             meat:0  
         },
         totalPrice: 4,
-        purchaseable: false
+        purchaseable: false,
+        purchasing: false
     }
  //this function run just when we update (addIngredientHandler or removeIngredientHandler) never pass it to buildcontrolls jsst we pass purchaseable
     updatePurchaseState  (ingredients) {
@@ -73,6 +75,11 @@ class BurgerBuilder extends React.Component{
         
     }
 
+    purchaseHandler=()=>{
+
+      this.setState({purchasing: true})  
+    }
+
 
     render(){
         // {salad: true, meat: false, ......}
@@ -85,6 +92,9 @@ class BurgerBuilder extends React.Component{
         console.log(disabledInfo)
         return (
             <Aux>
+                <Modal show={this.state.purchasing}>
+                    <Ordersummary ingredients={this.state.ingredients} />
+                </Modal>
                 <Burger  ingredients={this.state.ingredients}/>
                 <BuildControls
                     ingredientAdded={this.addIngredientHandler}
@@ -92,6 +102,7 @@ class BurgerBuilder extends React.Component{
                     disabled={disabledInfo}
                     purchaseable={this.state.purchaseable}
                     price={this.state.totalPrice}
+                    ordered={this.purchaseHandler}
                 />
             </Aux>
         )
