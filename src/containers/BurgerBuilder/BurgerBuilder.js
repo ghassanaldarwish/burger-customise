@@ -120,6 +120,6 @@ class BurgerBuilder extends React.Component {
         )
     }
 }
-// ingredients is not same the prop in state it sjus name for prop to pass it
+// ingredients is not same the prop in state it just name for prop to pass it
 
 export default BurgerBuilder
