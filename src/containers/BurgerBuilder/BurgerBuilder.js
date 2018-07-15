@@ -85,7 +85,7 @@ class BurgerBuilder extends React.Component {
     }
 
     purchasecontinueHandler= () =>{
-        alert('You continue your order')
+        alert('we keep working on server side, will be a variable soon :)')
     }
 
 
