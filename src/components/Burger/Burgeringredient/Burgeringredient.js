@@ -42,6 +42,7 @@ class Burgeringredient extends React.Component {
 }
 
 //make roll that type should be string and required
+// to use this prop types validation we should useing classes
 Burgeringredient.PropTypes={
    type: PropTypes.string.isRequired 
 }
