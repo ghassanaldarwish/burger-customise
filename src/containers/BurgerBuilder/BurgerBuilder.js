@@ -11,7 +11,7 @@ const INGREDIENT_PRICES = {
     salad: 0.5,
     cheese: 0.4,
     meat: 1.3,
-    bacon: 0.7
+    salami: 0.7
 }
 
 class BurgerBuilder extends React.Component {
@@ -19,7 +19,7 @@ class BurgerBuilder extends React.Component {
     state = {
         ingredients: {
             salad: 0,
-            bacon: 0,
+            salami: 0,
             cheese: 0,
             meat: 0
         },
