@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Aux from '../../hoc/Hux'
+import Aux from '../../hoc/Hux/Hux'
 
 import Burger from '../../components/Burger/Burger'
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
@@ -24,7 +24,7 @@ class BurgerBuilder extends React.Component {
             meat: 0
         },
         totalPrice: 4,
-        purchaseable: false,
+        purchaseable:false,
         purchasing: false
     }
     //this function run just when we update (addIngredientHandler or removeIngredientHandler) never pass it to buildcontrolls jsst we pass purchaseable
