@@ -28,6 +28,7 @@ class Orders extends Component {
         })
     }
     render() {
+        console.log(this.state.orders)
         return (
             <div>
              {this.state.loading ?
@@ -35,9 +36,11 @@ class Orders extends Component {
                     this.state.orders.map(order=>(
                    <Order 
                    ingredients={order.ingredients}
+                   orderData={order.orderData}
                    price={order.price}
                    time={order.time}
                    date={order.date}
+                   deliveryMethod={order.orderData.deliveryMethod}
                    key={order.id} 
                   loading={this.state.loading}
                    />

@@ -3,7 +3,8 @@
                     elementType: 'input',
                     elementConfig: {
                         type: 'text',
-                        placeholder: 'Your Name'
+                        placeholder: 'Your Name',
+                    
                     },
                     value: '',
                     validation: {
@@ -16,7 +17,8 @@
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
-                    placeholder: 'Street'
+                    placeholder: 'Street',
+                
                 },
                 value: '',
                 validation: {
@@ -29,7 +31,8 @@
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
-                    placeholder: 'ZIP Code'
+                    placeholder: 'ZIP Code',
+                
                 },
                 value: '',
                 validation: {
@@ -44,7 +47,8 @@
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
-                    placeholder: 'City'
+                    placeholder: 'City',
+                    autocomplete:"off"
                 },
                 value: '',
                 validation: {
@@ -57,7 +61,8 @@
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
-                    placeholder: 'Country'
+                    placeholder: 'Country',
+                    autocomplete:"off"
                 },
                 value: '',
                 validation: {
@@ -70,7 +75,9 @@
                 elementType: 'input',
                 elementConfig: {
                     type: 'email',
-                    placeholder: 'Your E-Mail '
+                    placeholder: 'Your E-Mail ',
+                
+                    
                 },
                 value: '',
                 validation: {
@@ -82,8 +89,10 @@
           deliveryMethod:{
                 elementType: 'select',
                 elementConfig: {
-                    options: [{value: 'fastest', displayValue: 'Fastest'},
-                                {value: 'standard', displayValue: 'Standard'}
+                    options: [
+                        {value: 'standard', displayValue: 'Standard'},
+                        {value: 'fastest', displayValue: 'Fastest'}
+                                
                     ]
                 },
                 validation: {},

@@ -30,10 +30,18 @@ class Order extends Component {
 
         return (
             <div className={calsses.Order}>
-                <p><strong>{this.props.date}</strong></p>
-                 <p>Locale Time:<strong>{this.props.time}</strong></p>
+                <p style={{textAlign: 'center'}}><strong>{this.props.date}</strong></p>
+                 <p style={{textAlign: 'center'}}>Locale Time:<strong>{this.props.time}</strong></p>
+            
+                 <p><strong>{this.props.orderData.name}</strong></p>
+                 <p><strong>{this.props.orderData.street}</strong></p>
+                 <p><strong>{this.props.orderData.zipCode} {this.props.orderData.city}</strong></p>
+                 <p><strong>{this.props.orderData.country}</strong></p>
+                
+                 <p>Delivery Method: <strong>{this.props.deliveryMethod}</strong></p>
                  <p>Ingredients: {ingredientsOutput}</p>
-                 <p>Price: <strong>USD {this.props.price}</strong></p>
+                 <p>Price: <strong>EUR {this.props.price}</strong></p>
+                
           </div>
         );
     }

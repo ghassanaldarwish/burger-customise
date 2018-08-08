@@ -14,7 +14,7 @@ class Input extends Component {
 
         switch(this.props.elementType){
             case ('input'):
-                inputElement = <input className={inputClasses.join(' ')}
+                inputElement = <input  className={inputClasses.join(' ')}
                         onChange={this.props.changed}
                      value={this.props.value}
                      {...this.props.elementConfig}/>;
@@ -43,7 +43,7 @@ class Input extends Component {
                      )
                 break
             default :
-                inputElement = <input className={inputClasses.join(' ')}
+                inputElement = <input  className={inputClasses.join(' ')}
                      value={this.props.value}
                             onChange={this.props.changed}
                      {...this.props.elementConfig}/>
