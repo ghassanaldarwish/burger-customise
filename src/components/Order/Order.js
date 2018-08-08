@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import calsses from './Order.css'
 
+
 class Order extends Component {
+   
     render() {
+
         console.log(this.props.ingredients)
         let ingredients=[]
         for(let key in this.props.ingredients){
@@ -24,11 +27,14 @@ class Order extends Component {
           key={ig.name}> {ig.name} ({ig.amount}) </span>
         })
 
+
         return (
             <div className={calsses.Order}>
-               <p>Ingredients: {ingredientsOutput}</p>
-               <p>Price: <strong>USD {this.props.price}</strong></p>
-            </div>
+                <p><strong>{this.props.date}</strong></p>
+                 <p>Locale Time:<strong>{this.props.time}</strong></p>
+                 <p>Ingredients: {ingredientsOutput}</p>
+                 <p>Price: <strong>USD {this.props.price}</strong></p>
+          </div>
         );
     }
 }
