@@ -28,7 +28,7 @@ class ContactData extends Component {
          price:Number.parseFloat(this.props.price).toFixed(2),
          orderData: formData,
          time: new Date().toLocaleTimeString(),
-         date: new Date().toLocaleDateString()
+         date: new Date().toLocaleDateString('de-DE',{year: 'numeric', month: 'long', day: 'numeric'})
 
      }
      axios.post('/orders.json',order)
