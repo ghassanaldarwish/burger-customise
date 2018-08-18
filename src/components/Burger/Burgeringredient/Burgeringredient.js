@@ -1,6 +1,6 @@
 import React from 'react'
 
-import PropTypes from 'prop-types' 
+import propTypes from 'prop-types' 
 //roll validation
 
 import classes from './Burgeringredient.css'
@@ -43,8 +43,8 @@ class Burgeringredient extends React.Component {
 
 //make roll that type should be string and required
 // to use this prop types validation we should useing classes
-Burgeringredient.PropTypes={
-   type: PropTypes.string.isRequired 
+Burgeringredient.propTypes={
+   type: propTypes.string.isRequired 
 }
 
 
