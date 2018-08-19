@@ -6,6 +6,7 @@
  import {withRouter} from 'react-router-dom'
  import Input from '../../../components/UI/Input/Input'
  import orderForm from '../../orderForm/orderForm'
+ import { connect } from 'react-redux'
 
  
 
@@ -26,7 +27,7 @@ class ContactData extends Component {
         }
 
          const order={
-         ingredients:this.props.ingredients,
+         ingredients:this.props.ings,
          price:Number.parseFloat(this.props.price).toFixed(2),
          orderData: formData,
          time: new Date().toLocaleTimeString(),
@@ -42,7 +43,7 @@ class ContactData extends Component {
           this.setState({loading: false})
      })
 
-        console.log(this.props.ingredients)
+        console.log(this.props.ings)
 
     }
 
@@ -125,5 +126,13 @@ class ContactData extends Component {
 }
 
 
-export default withRouter(ContactData)
+const mapStateToProps = state => {
+    return {
+        ings: state.ingredients,
+        price: state.totalPrice
+    }
+}
+
+export default connect(mapStateToProps)(withRouter(ContactData))
+
 

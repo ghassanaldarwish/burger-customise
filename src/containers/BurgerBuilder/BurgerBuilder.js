@@ -9,7 +9,7 @@ import Ordersummary from '../../components/Burger/OrderSummary/OrderSummary'
 import axios from '../../axios-orders'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import  withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
-import * as actionType from '../../store/actions'
+import * as BurgerBuilderActions from '../../store/actions/index'
 import { connect } from 'react-redux'
 
 
@@ -52,18 +52,7 @@ class BurgerBuilder extends React.Component {
     }
 
     purchasecontinueHandler= () =>{
-  
-        const queryParams=[]
-        for(let i in this.state.ingredients){
-            queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i])) 
-        }
-        queryParams.push('price=' + this.state.totalPrice)
-        const queryString=queryParams.join('&')
-
-        this.props.history.push({
-            pathname: '/checkout',
-            search: '?' + queryString
-        })
+        this.props.history.push('/checkout')
     }
 
 
@@ -127,8 +116,8 @@ const mapStateToProps =(state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addIngredientHandler: (ingName) => dispatch({type:actionType.ADD_INGREDIENT, payload: ingName }),
-        removeIngredientHandler: (ingName) => dispatch({type:actionType.REMOVE_INGREDIENT, payload: ingName })   
+        addIngredientHandler: (ingName) => dispatch(BurgerBuilderActions.addIngredient(ingName)),
+        removeIngredientHandler: (ingName) => dispatch(BurgerBuilderActions.removeIngredient(ingName))   
     }
 }
 
