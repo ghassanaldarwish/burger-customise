@@ -18,13 +18,13 @@ import { connect } from 'react-redux'
 class BurgerBuilder extends React.Component {
 
     state = {
-        purchasing: false,
-        loading: false,
-        error: false
+        purchaseable: false
+     
     }
 
     componentDidMount(){
         console.log(this.props)
+        this.props.onFetchIngredient()
         // axios.get('https://my-burger-c1179.firebaseio.com/ingredients.json')
         // .then(res =>{
         //    this.setState({ingredients: res.data})
@@ -55,9 +55,13 @@ class BurgerBuilder extends React.Component {
         this.props.history.push('/checkout')
     }
 
+    purchaseableHandler= () =>{
+      return  Object.values(this.props.ings).reduce( ( sum, i ) => sum + i ) > 0
+    }
+
 
     render() {
-        let purchaseable = Object.values(this.props.ings).reduce( ( sum, i ) => sum + i ) > 0
+      //  let purchaseable = Object.values(this.props.ings).reduce( ( sum, i ) => sum + i ) > 0
       
         // {salad: true, meat: false, ......}
         const disabledInfo = { ...this.props.ings }
@@ -69,7 +73,7 @@ class BurgerBuilder extends React.Component {
         console.log(disabledInfo)
 
          let ordersummary=null
-        let burger=this.state.error?<p>The page can't be loaded!</p> :<Spinner />
+        let burger=this.props.error?<p>The page can't be loaded!</p> :<Spinner />
 
        if(this.props.ings) {
             burger=( 
@@ -79,7 +83,7 @@ class BurgerBuilder extends React.Component {
                 ingredientAdded={this.props.addIngredientHandler}
                 ingredientremoved={this.props.removeIngredientHandler}
                 disabled={disabledInfo}
-                purchaseable={purchaseable}
+                purchaseable={this.purchaseableHandler()}
                 price={this.props.price}
                 ordered={this.purchaseHandler}
                      />
@@ -92,9 +96,9 @@ class BurgerBuilder extends React.Component {
            />
     
            }
-           if (this.state.loading){
-            ordersummary= <Spinner />
-          }
+        //    if (this.state.loading){
+        //     ordersummary= <Spinner />
+        //   }
         return (
             <Aux>
                 <Modal show={this.state.purchasing} modalClosed={this.purchaseCencelHandler}>
@@ -110,14 +114,17 @@ class BurgerBuilder extends React.Component {
 const mapStateToProps =(state) => {
    return {
     ings: state.ingredients ,
-    price: state.totalPrice
+    price: state.totalPrice,
+    error: state.error
 }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         addIngredientHandler: (ingName) => dispatch(BurgerBuilderActions.addIngredient(ingName)),
-        removeIngredientHandler: (ingName) => dispatch(BurgerBuilderActions.removeIngredient(ingName))   
+        removeIngredientHandler: (ingName) => dispatch(BurgerBuilderActions.removeIngredient(ingName)),
+        onFetchIngredient: () => dispatch(BurgerBuilderActions.ingredientFetched())   
+
     }
 }
 
