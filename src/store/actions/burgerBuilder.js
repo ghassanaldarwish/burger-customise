@@ -23,7 +23,7 @@ return {
 
 export const setIngredient = (ingredients) => {
 
-    console.log('JHKJJHJHUOHONKLMLKMK',ingredients)
+   
     return {
         type: actionType.INGREDIENT_FETCHED,
         ingredients: ingredients
@@ -44,7 +44,7 @@ export const ingredientFetched = () =>{
         axios.get('https://my-burger-c1179.firebaseio.com/ingredients.json')
         .then(res =>{
          dispatch(setIngredient(res.data))
-         console.log('HHHHHHHHHHHHHHHHHHHHHHHHHHHHH',res.data)
+     
         })
         .catch(err=>{
             dispatch(fetchIngredientFailed())
