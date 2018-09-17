@@ -25,26 +25,18 @@ class BurgerBuilder extends React.Component {
     componentDidMount(){
         console.log(this.props)
         this.props.onFetchIngredient()
-        // axios.get('https://my-burger-c1179.firebaseio.com/ingredients.json')
-        // .then(res =>{
-        //    this.setState({ingredients: res.data})
-        //    // make the button active in controls if the is ingredens comming from DB
-        //    let sumIng=Object.values(res.data).reduce((sum,i)=>sum+i)
-        //    console.log(sumIng)
-        //    if(sumIng > 0){
-        //        this.setState({purchaseable: true})
-        //    }
-            
-        // })
-        // .catch(err=>{
-        //     this.setState({error: true})
-        // })
+     
     }
     //this function run just when we update (addIngredientHandler or removeIngredientHandler) never pass it to buildcontrolls jsst we pass purchaseable
    
     purchaseHandler = () => {
-
-        this.setState({ purchasing: true })
+        if (this.props.isAuth) {
+            this.setState({ purchasing: true })
+        } else {
+            this.props.setRedirectPath('/checkout')
+            this.props.history.push('/auth')
+        }
+        
     }
 
     purchaseCencelHandler =() => {
@@ -87,6 +79,7 @@ class BurgerBuilder extends React.Component {
                 purchaseable={this.purchaseableHandler()}
                 price={this.props.price}
                 ordered={this.purchaseHandler}
+                isAuth={this.props.isAuth}
                      />
             </Aux>
            );
@@ -97,9 +90,7 @@ class BurgerBuilder extends React.Component {
            />
     
            }
-        //    if (this.state.loading){
-        //     ordersummary= <Spinner />
-        //   }
+      
         return (
             <Aux>
                 <Modal show={this.state.purchasing} modalClosed={this.purchaseCencelHandler}>
@@ -116,7 +107,8 @@ const mapStateToProps =(state) => {
    return {
     ings: state.burgerBuilder.ingredients ,
     price: state.burgerBuilder.totalPrice,
-    error: state.burgerBuilder.error
+    error: state.burgerBuilder.error,
+    isAuth: state.auth.token !== null
 }
 }
 
@@ -125,7 +117,9 @@ const mapDispatchToProps = (dispatch) => {
         addIngredientHandler: (ingName) => dispatch(actions.addIngredient(ingName)),
         removeIngredientHandler: (ingName) => dispatch(actions.removeIngredient(ingName)),
         onFetchIngredient: () => dispatch(actions.ingredientFetched()),
-        onPurchaseInit:() => dispatch(actions.purchaseInit())   
+        onPurchaseInit:() => dispatch(actions.purchaseInit()),  
+        setRedirectPath:(path) => dispatch(actions.setRedirectPath(path)) 
+
 
     }
 }

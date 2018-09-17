@@ -21,7 +21,7 @@ class ContactData extends Component {
 
     orderHandler=( event ) => {
         event.preventDefault()
-        //  this.setState({loading: true})
+  
         const formData = {}
 
         for(let formElementIdentifier in this.state.orderForm){
@@ -33,21 +33,13 @@ class ContactData extends Component {
          price:Number.parseFloat(this.props.price).toFixed(2),
          orderData: formData,
          time: new Date().toLocaleTimeString(),
-         date: new Date().toLocaleDateString('de-DE',{year: 'numeric', month: 'long', day: 'numeric'})
+         date: new Date().toLocaleDateString('de-DE',{year: 'numeric', month: 'long', day: 'numeric'}),
+         userId: this.props.userId
 
      }
 
-     this.props.onOrderBurger(order)
-    //  axios.post('/orders.json',order)
-    //  .then(res=>{
-    //      this.setState({loading: false})
-    //      this.props.history.push('/')
-    //     })
-    //  .catch(err=>{
-    //       this.setState({loading: false})
-    //  })
-
-    //     console.log(this.props.ings)
+     this.props.onOrderBurger(order, this.props.token)
+ 
 
     }
 
@@ -134,13 +126,15 @@ const mapStateToProps = state => {
     return {
         ings: state.burgerBuilder.ingredients,
         price: state.burgerBuilder.totalPrice,
-        loading: state.orders.loading
+        loading: state.orders.loading,
+        token: state.auth.token,
+        userId: state.auth.userId
     }
 }
 
 const mapDispatchToProps = dispatch => {
   return  {
-   onOrderBurger: (orderData) => dispatch(actions.purchaseBurger(orderData)) 
+   onOrderBurger: (orderData, token) => dispatch(actions.purchaseBurger(orderData, token)) 
 }
 }
 

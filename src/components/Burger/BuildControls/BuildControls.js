@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 import classes from './BuildControls.css'
 
 import BuildControl from './BuildControl/BuildControl'
@@ -12,22 +13,34 @@ const controls = [
     { label: 'Meat', type: 'meat' }
 ]
 
-const buildControls = (props) => (
-    <div className={classes.BuildControls}>
-        <p>Current Price: <strong>{props.price.toFixed(2)} €</strong></p>
-        {controls.map((i) => (
-            <BuildControl key={i.label}
-                label={i.label}
-                added={() => props.ingredientAdded(i.type)}
-                removed={() => props.ingredientremoved(i.type)}
-                disabled={props.disabled[i.type]} />
-        ))}
-        <button className={classes.OrderButton}
-            disabled={!props.purchaseable}
-            onClick={props.ordered}
-        >ORDER NOW</button>
+class BuildControls  extends React.Component {
+   
 
-    </div>
-)
+    render() {
+        return (
+            <div className={classes.BuildControls}>
+         
+                <p>Current Price: <strong>{this.props.price.toFixed(2)} €</strong></p>
+                {controls.map((i) => (
+                    <BuildControl key={i.label}
+                        label={i.label}
+                        added={() => this.props.ingredientAdded(i.type)}
+                        removed={() => this.props.ingredientremoved(i.type)}
+                        disabled={this.props.disabled[i.type]} />
+                ))}
+                <button className={classes.OrderButton}
+                    disabled={!this.props.purchaseable}
+                    onClick={this.props.ordered} 
+                    >{this.props.isAuth ?'ORDER NOW' : 'SIGN UP TO ORDER'}</button>
+        
+                
+        
+        
+            </div>
+        )
+    }
+}
 
-export default buildControls
+ 
+
+export default BuildControls
