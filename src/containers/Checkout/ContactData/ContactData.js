@@ -9,6 +9,10 @@
  import { connect } from 'react-redux'
  import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler'
  import * as actions from '../../../store/actions/index'
+ import PaypalExpressBtn from 'react-paypal-express-checkout';
+
+ // to change button stayle fallow 
+ //https://developer.paypal.com/docs/checkout/how-to/customize-button/#customization-example
 
  
 
@@ -82,6 +86,39 @@ class ContactData extends Component {
     }
 
     render() {
+
+        const onSuccess = (payment) => {
+		
+            		console.log("The payment was succeeded!", payment);
+            	
+		}		
+		
+		const onCancel = (data) => {
+		
+			console.log('The payment was cancelled!', data);
+		
+		}	
+		
+		const onError = (err) => {
+			
+			console.log("Error!", err);
+			
+		}			
+			
+		let env = 'sandbox'; // you can set here to 'production' for production
+		const client = {
+			sandbox:    'Ac9IWWjP86I5jgeR_bG-Rc-RzOacoY0khJwRDREqzro1mdEgFwgGInof3t8FTIlWmo0a16-weBifOSM5',
+			production: 'Ac9IWWjP86I5jgeR_bG-Rc-RzOacoY0khJwRDREqzro1mdEgFwgGInof3t8FTIlWmo0a16-weBifOSM5',
+        }
+        let style = {
+            size: 'responsive',
+            color: 'silver',
+          
+            shape: 'pill',
+            label: 'checkout',
+            tagline: 'true'
+        }
+
         const formElementsArray = []
         for(let key in this.state.orderForm){
             formElementsArray.push({
@@ -104,11 +141,23 @@ class ContactData extends Component {
                       changed={(event)=>this.inputChangedHandler(event, formElem.id)}
                       /> 
             ))}
-            <Button
-                disabled={!this.state.formIsValid}
-                 btnType='Success'>ORDER</Button>
+           {!this.state.formIsValid ? <Button
+                disabled={true}> Checkout with PayPal  </Button> :
+                <PaypalExpressBtn env={env}
+                 client={client}
+                  currency={'EUR'}
+                    total={this.props.price}
+                    onError={onError}
+                     onSuccess={onSuccess}
+                      onCancel={onCancel}
+                      style={style}
+                       />}
+               
+                
           </form>  
         )
+
+
         if(this.props.loading){
             form=<Spinner />
         }
