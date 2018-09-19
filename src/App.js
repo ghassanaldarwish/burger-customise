@@ -10,6 +10,7 @@ import Checkout from './containers/Checkout/Checkout'
 import Orders from './containers/Orders/Orders'
 import Auth from './containers/Auth/Auth'
 import Logout from './containers/Auth/Logout/Logout'
+import ShoppingSuccess from './components/ShoppingSucces/ShoppingSucces'
 
 
 class App extends Component {
@@ -37,8 +38,11 @@ class App extends Component {
                 <Route path='/orders' component={Orders}/>
                 <Route path='/logout' component={Logout}/>
                 <Route path='/auth' component={Auth}/>
+                
                 <Route path='/' exact component={BurgerBuilder}/>
-                <Redirect to='/' />
+                {this.props.success ? <Route path='/shopping-success' component={ShoppingSuccess}/> : null}
+                {this.props.success ? <Redirect to='/shopping-success' /> : <Redirect to='/' />}
+                
               </Switch>
         
       )
@@ -64,6 +68,8 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
       isAuth: state.auth.token !== null,
+      success: state.orders.success,
+      purchased: state.orders.purchased
       
   }
 }

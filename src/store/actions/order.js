@@ -90,3 +90,9 @@ export const fetchOrders =  (token , userId) => {
     }
 }
 
+export const shoppingSuccess = () => {
+    return {
+        type: actionType.SHOPPING_SUCCESS
+    }
+}
+
