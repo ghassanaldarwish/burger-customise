@@ -13,6 +13,7 @@ import Logout from './containers/Auth/Logout/Logout'
 import ShoppingSuccess from './components/ShoppingSucces/ShoppingSucces'
 
 
+
 class App extends Component {
  
   componentDidMount() {
@@ -49,6 +50,7 @@ class App extends Component {
     }
 
     return (
+
       <div>
          <Layout>
            
@@ -60,6 +62,7 @@ class App extends Component {
          
          </Layout>
       </div>
+
     );
   }
 }

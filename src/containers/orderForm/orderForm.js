@@ -72,22 +72,7 @@
                 valid: false,
                 touched: false
                   },
-           email: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'email',
-                    placeholder: 'Your E-Mail ',
-                
-                    
-                },
-                value: '',
-                validation: {
-                    required: true,
-                    isEmail: true
-                },
-                valid: false,
-                touched: false
-              },
+         
           deliveryMethod:{
                 elementType: 'select',
                 elementConfig: {
