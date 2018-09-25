@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import * as actions from '../../store/actions/index'
 // import Input from '../../components/UI/Input/Input'
-// import Button from '../../components/UI/Button/Button'
+//  import Button from '../../components/UI/Button/Button'
 
 // import classes from './Auth.css'
 import Spinner from '../../components/UI/Spinner/Spinner'

@@ -2,9 +2,19 @@ import React from 'react'
 
 import Aux from '../../../hoc/Hux/Hux'
 
-import Button from '../../UI/Button/Button'
+// import Button from '../../UI/Button/Button'
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
 
+const styles = theme => ({
+    button: {
+      margin: theme.spacing.unit,
+    },
+    input: {
+      display: 'none',
+    },
+  });
 
 class Ordersummary extends React.Component {
     render(){
@@ -22,7 +32,7 @@ class Ordersummary extends React.Component {
 
     console.log(this.props.ingredients)
 
-
+    const { classes } = this.props;
 
     return (
         <Aux>
@@ -33,8 +43,8 @@ class Ordersummary extends React.Component {
             </ul>
             <p><strong>Total Price: {this.props.price.toFixed(2)} €</strong></p>
             <p>continue to checkout? </p>
-            <Button btnType="Danger" clicked={this.props.purchaseCanceled}>CANCEL</Button>
-            <Button btnType="Success" clicked={this.props.purchaseContinued}>CONTINUE</Button>
+            <Button variant="contained" className={classes.button} color="secondary" onClick={this.props.purchaseCanceled}>CANCEL</Button>
+            <Button variant="contained" className={classes.button} color="primary" onClick={this.props.purchaseContinued}>CONTINUE</Button>
         </Aux>
     )
 
@@ -42,4 +52,4 @@ class Ordersummary extends React.Component {
 
 }
 
-export default Ordersummary
+export default withStyles(styles)(Ordersummary)

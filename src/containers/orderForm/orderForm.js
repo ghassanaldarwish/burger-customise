@@ -3,7 +3,7 @@
                     elementType: 'input',
                     elementConfig: {
                         type: 'text',
-                        placeholder: 'Your Name',
+                         label: 'Your Name',
                     
                     },
                     value: '',
@@ -17,7 +17,7 @@
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
-                    placeholder: 'Street',
+                    label: 'Street',
                 
                 },
                 value: '',
@@ -31,7 +31,7 @@
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
-                    placeholder: 'ZIP Code',
+                    label: 'ZIP Code',
                 
                 },
                 value: '',
@@ -48,8 +48,8 @@
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
-                    placeholder: 'City',
-                    autocomplete:"off"
+                    label: 'City',
+                    autoComplete:"off"
                 },
                 value: '',
                 validation: {
@@ -62,8 +62,8 @@
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
-                    placeholder: 'Country',
-                    autocomplete:"off"
+                    label: 'Country',
+                    autoComplete:"off"
                 },
                 value: '',
                 validation: {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Button from '../../../components/UI/Button/Button'
-import classes from './ContactData.css'
+// import Button from '../../../components/UI/Button/Button'
+import classesStyle from './ContactData.css'
 import axios from '../../../axios-orders'
 import Spinner from '../../../components/UI/Spinner/Spinner'
 import { withRouter } from 'react-router-dom'
@@ -11,11 +11,18 @@ import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler'
 import * as actions from '../../../store/actions/index'
 import PaypalExpressBtn from 'react-paypal-express-checkout';
 
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
 
 // to change button stayle fallow 
 //https://developer.paypal.com/docs/checkout/how-to/customize-button/#customization-example
 
-
+const styles = theme => ({
+    button: {
+        margin: theme.spacing.unit,
+    }
+});
 
 class ContactData extends Component {
     state = {
@@ -94,7 +101,7 @@ class ContactData extends Component {
         console.log("The payment was succeeded!", payment);
         if (payment) {
             this.props.shoppingSuccess()
-            this.setState({ cancelledPayment: false, errorPayment: false})
+            this.setState({ cancelledPayment: false, errorPayment: false })
         }
 
     }
@@ -103,7 +110,7 @@ class ContactData extends Component {
 
         console.log('The payment was cancelled!', data);
         if (data) {
-            this.setState({ cancelledPayment: true, errorPayment: false})
+            this.setState({ cancelledPayment: true, errorPayment: false })
         }
 
     }
@@ -113,7 +120,7 @@ class ContactData extends Component {
         console.log("Error!", err);
 
         if (err) {
-            this.setState({ cancelledPayment: false, errorPayment: true})
+            this.setState({ cancelledPayment: false, errorPayment: true })
         }
 
     }
@@ -142,7 +149,7 @@ class ContactData extends Component {
 
     render() {
 
-
+        const { classes } = this.props;
 
         let env = 'sandbox'; // you can set here to 'production' for production
         const client = {
@@ -150,8 +157,8 @@ class ContactData extends Component {
             production: 'Ac9IWWjP86I5jgeR_bG-Rc-RzOacoY0khJwRDREqzro1mdEgFwgGInof3t8FTIlWmo0a16-weBifOSM5',
         }
         let style = {
-            size: 'responsive',
-            color: 'silver',
+            size: 'medium',
+            color: 'blue',
 
             shape: 'pill',
             label: 'checkout',
@@ -173,6 +180,8 @@ class ContactData extends Component {
 
                 {formElementsArray.map(formElem => (
                     <Input
+                   
+                   
                         key={formElem.id}
                         shouldValidate={formElem.config.validation}
                         invalid={!formElem.config.valid}
@@ -185,13 +194,13 @@ class ContactData extends Component {
                 ))}
 
 
-
-                <Button
-                    title={this.state.formIsValid && !this.props.success ? 'you should checkout with paypal first to countino your order !' : null}
-                    disabled={!this.props.success || !this.state.formIsValid}
-                    btnType='Success'>{this.props.success && this.state.formIsValid ? 'ORDER NOW' : this.state.formIsValid ? 'Checkout with PayPal First' : 'Your form is not Valid'}
-                </Button>
-
+                <button style={{ background: 'none', border: 'none' }}>
+                    <Button
+                        variant="outlined" color="primary" className={classes.button}
+                        disabled={!this.props.success || !this.state.formIsValid}
+                    >{this.props.success && this.state.formIsValid ? 'ORDER NOW' : this.state.formIsValid ? 'Checkout with PayPal First' : 'Your form is not Valid'}
+                    </Button>
+                </button>
 
 
 
@@ -203,8 +212,9 @@ class ContactData extends Component {
         if (this.props.loading) {
             form = <Spinner />
         }
+
         return (
-            <div className={classes.ContactData}>
+            <div className={classesStyle.ContactData}>
                 <h4>Enter your Contact Data</h4>
                 {this.state.cancelledPayment ? <h5>you cancelled the payment !! please checkout with paypal agine</h5> : null}
                 {this.state.errorPayment ? <h5>we apologize there is somthing went wrong with payment  please try agine! or contact with us: phone:123456765 Email:burger-bulder@yahoo.com </h5> : null}
@@ -222,7 +232,7 @@ class ContactData extends Component {
                             onCancel={this.onCancel}
                             style={style}
                             locale={'de-DE'}
-                        /> : <Button disabled={true} title='full the form please !' >PayPal</Button>}
+                        /> : <Button variant="outlined" className={classes.button} disabled >PayPal</Button>}
             </div>
         );
     }
@@ -247,6 +257,6 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(withErrorHandler(ContactData, axios)))
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(withErrorHandler(withStyles(styles)(ContactData), axios)))
 
 
