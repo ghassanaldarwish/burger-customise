@@ -194,13 +194,13 @@ class ContactData extends Component {
                 ))}
 
 
-                <button style={{ background: 'none', border: 'none' }}>
+               {this.props.success ? <button style={{ background: 'none', border: 'none' }}>
                     <Button
-                        variant="outlined" color="primary" className={classes.button}
+                        variant="contained" color="primary" className={classes.button} size='large'
                         disabled={!this.props.success || !this.state.formIsValid}
-                    >{this.props.success && this.state.formIsValid ? 'ORDER NOW' : this.state.formIsValid ? 'Checkout with PayPal First' : 'Your form is not Valid'}
+                    >{  this.state.formIsValid ? 'ORDER NOW' :  'Your form is not Valid'}
                     </Button>
-                </button>
+                </button> : null}
 
 
 
@@ -232,7 +232,7 @@ class ContactData extends Component {
                             onCancel={this.onCancel}
                             style={style}
                             locale={'de-DE'}
-                        /> : <Button variant="outlined" className={classes.button} disabled >PayPal</Button>}
+                        /> : <Button size='large' variant="outlined" className={classes.button} disabled >PayPal</Button>}
             </div>
         );
     }
