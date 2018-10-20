@@ -1,5 +1,5 @@
 
-[Screenshot](burger-builder.png)
+![Screenshot](burger-builder.png)
 # burger-builder
 
 > A quick walkthrough of my burger builder app built using React, React Router, and Redux
