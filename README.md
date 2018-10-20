@@ -1,10 +1,15 @@
 
+
 ![Screenshot](burger-builder.png)
 # burger-builder
 
 > A quick walkthrough of my burger builder app built using React, React Router, and Redux
 
-[See it live:](https://dci-burger.herokuapp.com/)
+
+
+## See it live
+
+[burger-builder live on heroku](https://dci-burger.herokuapp.com/)
 
 ## Quick Start
 
