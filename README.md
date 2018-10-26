@@ -31,7 +31,7 @@ npm start
 ### Author
 
 Ghassan Aldarwish
-[al-developer](https://al-developer.herokuapp.com/)
+[my website](http://ghassanaldarwish.de/)
 
 ### Version
 
