@@ -1,15 +1,15 @@
-# burger-builder
+# burger-customise
 
 ![Screenshot](burger-builder.png)
 
 
-> A quick walkthrough of my burger builder app built using React, React Router, and Redux
+> A quick walkthrough of my burger customise app built using React, React Router, and Redux
 
 
 
 ## See it live
 
-[burger-builder live on heroku](https://dci-burger.herokuapp.com/)
+[burger-customise live on heroku](https://dci-burger.herokuapp.com/)
 
 ## Quick Start
 
